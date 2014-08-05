@@ -1,5 +1,5 @@
 window.App = Ember.Application.create();
 
-App.Store = DS.Store.extend({
+App.ApplicationStore = DS.Store.extend({
   adapter: DS.FixtureAdapter
 });

@@ -1,12 +1,4 @@
-App.Timetable = DS.Model.extend({
-  open_at:    DS.attr('string'),
-  close_at:   DS.attr('string'),
-  day:        DS.attr('int'),
-  date:       DS.attr('string'),
-  is_working: DS.attr('boolean')
-});
-
-App.Timetable.FIXTURES = [
+App.TimetableRaw = [
   {
     "id": 80,
     "open_at": "2000-01-01T10:00:00Z",
@@ -88,9 +80,3 @@ App.Timetable.FIXTURES = [
     "is_working": true
   }
 ];
-
-App.IndexRoute = Ember.Route.extend({
-  model: function() {
-      return App.Record.FIXTURES;
-  }
-});
