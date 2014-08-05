@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "ember": "~1.6.1",
-    "ember-data": "~0.0.14"
+    "ember-data": "~0.0.14",
+    "moment": "~2.8.0"
   }
 }
