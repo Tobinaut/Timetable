@@ -11,12 +11,12 @@
     <script type="text/x-handlebars" id="components/timetable-editor">
       <ul>
         {{#each day in sortedTimetables}}
-         <li>
+          <li>
           {{#each timetable in day}}
               {{input type="text" value=timetable.open_at}}
               {{input type="text" value=timetable.close_at}}
           {{/each}}
-          <button {{action 'addSpan'}}>Добавить</button>
+          <button {{action 'addSpan' _view.contentIndex}}>Добавить</button>
           </li>
         {{/each}}
       </ul>

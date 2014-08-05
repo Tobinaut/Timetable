@@ -1,18 +1,14 @@
 App.TimetableEditorComponent = Ember.Component.extend({
   actions: {
-    addSpan: function() {
-      //
-      // Сделать через Ember.ArrayProxy::pushObject()
-      //
-      var timetables = this.get('timetables');
-
-      var timetable = this.get('targetObject.store').createRecord('timetable', {
+    addSpan: function(day) {
+      var newTimetable = Em.Object.create({
         open_at: '',
         close_at: '',
-        day: this.get('timetables').get('day'),
+        day: day,
         date: null,
         is_working: true
       });
+      var timetables = this.get('timetables').pushObject(newTimetable);
 
     }
   },
@@ -24,12 +20,17 @@ App.TimetableEditorComponent = Ember.Component.extend({
   }).property('timetables.@each'),
 
   sortedTimetables: (function () {
-    var resArr = new Array();
-    for(var i = 0; i < 7; i++)
-        resArr[i] = new Array();
-    this.get('timetables').forEach(function(t) {
+    var resArr = Em.ArrayProxy.create({
+      content: []
+    });
 
-      resArr[t.get('day')].push(t);
+    for(var i = 0; i < 7; i++)
+      resArr.pushObject(Em.ArrayProxy.create({
+        content: []
+      }));
+
+    this.get('timetables').forEach(function(t) {
+      resArr.objectAt(t.get('day')).pushObject(t);
     });
     return resArr;
   }).property('timetables.@each')
