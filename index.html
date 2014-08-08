@@ -24,10 +24,9 @@
       </ul>
     </script>
     <script type="text/x-handlebars" id="components/time-editor">
-      {{input type="text" value=timeInput action="acceptChanges" focus-in="setDropdownVisible"}}
-        {{dropdownVisible}}
+      {{input type="text" value=timeInput action="acceptChanges" focus-in="setDropdownVisible" focus-out="setDropdownUnVisible"}}
         {{#if dropdownVisible}}
-          <div class='dropdownList'>
+          <div {{bind-attr class="dropdownVisible:dropdownList"}}>
               {{#each s in suggestionList}}
                   <span {{action pickTime s}}>{{ s }}</span>
                   <br>
