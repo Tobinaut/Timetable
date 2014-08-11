@@ -1,22 +1,23 @@
 App.TimetableEditorComponent = Ember.Component.extend({
   actions: {
     addSpan: function(day) {
+      var today = this.get('sortedTimetables').objectAt(day);
+      var open_at = moment(today.get('lastObject').close_at).add(15, 'm');
       var newTimetable = Em.Object.create({
-        open_at: '2000-01-01T23:30:00',
+        open_at: open_at,
         close_at: '2000-01-01T23:59:00',
         day: day,
         date: null,
         is_working: true
       });
-      this.get('timetables').pushObject(newTimetable);
+      if(moment(today.get('lastObject').close_at).isBefore(moment('2000-01-01T23:59:00')))
+        this.get('timetables').pushObject(newTimetable);
     },
   },
 
   timetables: null,
 
-  timetableSize: (function() {
-    return this.get('timetables.length');
-  }).property('timetables.@each'),
+  granulation: 30, //minutes
 
   sortedTimetables: (function () {
     var resArr = Em.ArrayProxy.create({

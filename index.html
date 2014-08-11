@@ -14,7 +14,7 @@
         {{#each day in sortedTimetables}}
           <li>
             {{#each timetable in day}}
-              {{time-span-editor timetable=timetable day=day timetables=timetables}}
+              {{time-span-editor timetable=timetable day=day timetables=timetables granulation=granulation}}
             {{/each}}
             <button {{action 'addSpan' _view.contentIndex}}>Добавить</button>
           </li>
@@ -34,9 +34,9 @@
     </script>
     <script type="text/x-handlebars" id="components/time-span-editor">
       с
-      {{ time-editor time=timetable.open_at day=day timetable=timetable flag='from'}}
+      {{ time-editor time=timetable.open_at day=day timetable=timetable flag='from' granulation=granulation}}
       по
-      {{ time-editor time=timetable.close_at day=day timetable=timetable flag='to'}}
+      {{ time-editor time=timetable.close_at day=day timetable=timetable flag='to' granulation=granulation}}
       {{#if canBeDeleted}}
         <button {{action deleteSpan _view.contentIndex}}>Удалить</button>
       {{/if}}
