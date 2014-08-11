@@ -13,8 +13,10 @@
       <ul>
         {{#each day in sortedTimetables}}
           <li>
-          {{day-editor day=day}}
-          <button {{action 'addSpan' _view.contentIndex}}>Добавить</button>
+            {{#each timetable in day}}
+              {{time-span-editor timetable=timetable day=day timetables=timetables}}
+            {{/each}}
+            <button {{action 'addSpan' _view.contentIndex}}>Добавить</button>
           </li>
         {{/each}}
       </ul>
@@ -30,12 +32,15 @@
           <div>
         {{/if}}
     </script>
-    <script type="text/x-handlebars" id="components/day-editor">
-      {{#each timetable in day}}
-        с {{ time-editor time=timetable.open_at day=day timetable=timetable flag='from'}}
-        по{{ time-editor time=timetable.close_at day=day timetable=timetable flag='to'}}
-        <br>
-      {{/each}}
+    <script type="text/x-handlebars" id="components/time-span-editor">
+      с
+      {{ time-editor time=timetable.open_at day=day timetable=timetable flag='from'}}
+      по
+      {{ time-editor time=timetable.close_at day=day timetable=timetable flag='to'}}
+      {{#if canBeDeleted}}
+        <button {{action deleteSpan _view.contentIndex}}>Удалить</button>
+      {{/if}}
+      <br>
     </script>
     <script type='text/javascript' src='bower_components/jquery/dist/jquery.min.js'></script>
     <script type='text/javascript' src='bower_components/handlebars/handlebars.min.js'></script>
@@ -48,5 +53,6 @@
     <script src="js/router.js"></script>
     <script src="js/components/timetableEditor.js"></script>
     <script src="js/components/timeEditor.js"></script>
+    <script src="js/components/timeSpanEditor.js"></script>
   </dody>
 </html>

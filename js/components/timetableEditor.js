@@ -8,8 +8,8 @@ App.TimetableEditorComponent = Ember.Component.extend({
         date: null,
         is_working: true
       });
-      var timetables = this.get('timetables').pushObject(newTimetable);
-    }
+      this.get('timetables').pushObject(newTimetable);
+    },
   },
 
   timetables: null,
