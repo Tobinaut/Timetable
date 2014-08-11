@@ -2,8 +2,8 @@ App.TimetableEditorComponent = Ember.Component.extend({
   actions: {
     addSpan: function(day) {
       var newTimetable = Em.Object.create({
-        open_at: '2000-01-01T00:00:00',
-        close_at: '2000-01-01T00:00:00',
+        open_at: '2000-01-01T23:30:00',
+        close_at: '2000-01-01T23:59:00',
         day: day,
         date: null,
         is_working: true
