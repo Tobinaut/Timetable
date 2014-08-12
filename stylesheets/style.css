@@ -1,0 +1,9 @@
+.dropdownList {
+  position: absolute;
+  overflow: scroll; /* Добавляем полосы прокрутки */
+  width: 40px; /* Ширина блока */
+  height: 100px; /* Высота блока */
+  padding: 10px; /* Поля вокруг текста */
+  border: solid 1px black; /* Параметры рамки */
+  background: white;
+}
